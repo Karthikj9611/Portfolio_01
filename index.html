@@ -323,6 +323,103 @@
 		font-size: 22px;
 		cursor: pointer;
 	}
+	
+	// Mobile css
+	
+	/* ================= MOBILE SAME AS DESKTOP ================= */
+
+@media (max-width: 768px) {
+
+  /* Keep layout similar */
+  .section {
+    padding: 30px 20px;
+  }
+
+  #home {
+    height: auto;
+    padding-top: 100px;
+  }
+
+  #home h1 {
+    font-size: 2.5rem; /* slightly reduced, not too small */
+  }
+
+  /* GRID - KEEP DESKTOP STYLE */
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* always 2 */
+    gap: 20px; /* same as desktop */
+  }
+
+  /* CARD - KEEP SAME LOOK */
+  .card img {
+    height: 160px; /* close to desktop */
+  }
+
+  .card-content {
+    padding: 18px; /* same feel */
+  }
+
+  .card-content h3 {
+    font-size: 16px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+  }
+
+  .card-buttons {
+    flex-direction: row; /* NOT column */
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 8px 14px;
+  }
+
+  /* NAVBAR */
+  #menuToggle {
+    display: block;
+  }
+
+  #navMenu {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: #0a0a0a;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    padding: 20px 0;
+  }
+
+  #navMenu.active {
+    display: flex;
+  }
+
+  #navMenu a {
+    margin: 10px 0;
+  }
+
+  /* FOOTER - keep structure */
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* SMALL PHONES */
+@media (max-width: 480px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr); /* STILL 2 */
+  }
+
+  #home h1 {
+    font-size: 2.2rem;
+  }
+}
+
+
 	</style>
 </head>
 
