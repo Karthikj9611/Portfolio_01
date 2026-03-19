@@ -251,55 +251,70 @@
     }
 
     /* project cards - optimized for mobile */
-    .project-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.2rem;
-    }
+    /* project cards — with FIXED IMAGE SIZES */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.2rem;
+}
 
-    .project-card {
-      background: var(--surface-dark);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(0,224,196,0.1);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      height: 100%;
-    }
+.project-card {
+  background: var(--surface-dark);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(0,224,196,0.1);
+  overflow: hidden;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
 
-    .card-media {
-      width: 100%;
-      aspect-ratio: 16/10;
-      background: linear-gradient(145deg, #1e2635, #151e2a);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--accent-primary);
-      font-size: 3rem;
-      position: relative;
-    }
+/* FIXED IMAGE CONTAINER - SAME SIZE FOR ALL */
+.card-media {
+  width: 100%;
+  height: 180px; /* FIXED HEIGHT - all images same size */
+  min-height: 180px;
+  max-height: 180px;
+  background: linear-gradient(145deg, #1e2635, #151e2a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-primary);
+  font-size: 3rem;
+  position: relative;
+  overflow: hidden;
+}
 
-    .card-media i {
-      opacity: 0.5;
-      font-size: 3rem;
-    }
+/* For actual images */
+.card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* This ensures image covers area without distortion */
+  display: block;
+}
 
-    .card-content {
-      padding: 1.2rem 1rem 1rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
+/* For icon placeholders */
+.card-media i {
+  font-size: 3rem;
+  opacity: 0.7;
+}
 
-    .card-content h3 {
-      font-size: 1.3rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      background: var(--gradient-1);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+/* Card content */
+.card-content {
+  padding: 1.5rem 1.2rem 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: var(--gradient-1);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
     .project-tech {
       display: flex;
@@ -560,9 +575,9 @@
     /* ========== MOBILE OPTIMIZED ========== */
     @media (max-width: 900px) {
       .home-grid { 
-        grid-template-columns: 1fr; 
-        gap: 1.5rem; 
-      }
+    grid-template-columns: 1.2fr 0.9fr;  /* ← KEEP SAME ROW */
+    gap: 1rem; 
+  }
       .profile-card { 
         max-width: 450px; 
         margin: 0 auto; 
@@ -649,6 +664,11 @@
       .card-media i {
         font-size: 2rem;
       }
+	  
+	   .home-grid { 
+    grid-template-columns: 1fr 1fr;  /* ← KEEP SIDE BY SIDE */
+    gap: 1rem; 
+  }
     }
 
     @media (max-width: 580px) {
@@ -738,6 +758,63 @@
         font-size: 1.5rem;
       }
     }
+	
+	
+	@media (max-width: 480px) {
+  .home-grid { 
+    grid-template-columns: 1fr 1fr;  /* ← STAYS SIDE BY SIDE */
+    gap: 0.8rem; 
+  }
+  
+  #home h1 { 
+    font-size: 1.2rem;  /* Smaller text to fit */
+  }
+  
+  .profile-card { 
+    padding: 0.8rem; 
+  }
+  
+  .avatar-logo { 
+    font-size: 2rem; 
+  }
+  
+  .stat-number { 
+    font-size: 1.2rem; 
+  }
+  
+  .availability { 
+    font-size: 0.65rem; 
+    padding: 0.2rem;
+  }
+}
+
+
+@media (max-width: 700px) {
+  /* ... existing code ... */
+  
+  /* FIXED IMAGE SIZES ON MOBILE */
+  .card-media {
+    height: 140px; /* Slightly smaller but still fixed */
+    min-height: 140px;
+    max-height: 140px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* ... existing code ... */
+  
+  /* FIXED IMAGE SIZES ON SMALL MOBILE */
+  .card-media {
+    height: 120px;
+    min-height: 120px;
+    max-height: 120px;
+  }
+  
+  .card-media i {
+    font-size: 2rem;
+  }
+}
+	
   </style>
 </head>
 <body>
