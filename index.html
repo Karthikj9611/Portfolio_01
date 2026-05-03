@@ -333,6 +333,21 @@ footer{position:relative;z-index:2;background:#030509;
 .tech-dot:nth-child(2){background:var(--c2)}
 .tech-dot:nth-child(3){background:var(--gold)}
 
+/* MOBILE SLIDER */
+.mobile-slider{display:none}
+.slider-track{display:flex;gap:1.1rem;transition:transform .42s cubic-bezier(.4,0,.2,1);will-change:transform}
+.slider-track > *{flex:0 0 calc(50% - .55rem);min-width:0}
+.slider-nav{display:flex;align-items:center;justify-content:center;gap:.8rem;margin-top:1.4rem}
+.slider-dot{width:8px;height:8px;border-radius:50%;background:rgba(0,255,204,.22);
+  border:1px solid rgba(0,255,204,.35);cursor:pointer;transition:all .25s}
+.slider-dot.active{background:var(--c1);box-shadow:0 0 8px var(--c1);width:22px;border-radius:10px}
+.slider-arrow{width:36px;height:36px;border-radius:50%;background:rgba(0,255,204,.08);
+  border:1px solid rgba(0,255,204,.25);color:var(--c1);font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  transition:all .22s;user-select:none}
+.slider-arrow:hover{background:rgba(0,255,204,.18);box-shadow:0 0 14px rgba(0,255,204,.3)}
+.slider-arrow:active{transform:scale(.92)}
+
 /* SCROLL REVEAL */
 .reveal{opacity:0;transform:translateY(32px);transition:opacity .75s ease,transform .75s ease}
 .reveal.visible{opacity:1;transform:none}
@@ -367,25 +382,29 @@ footer{position:relative;z-index:2;background:#030509;
   .hero-btns{justify-content:center}
   .hero-card{max-width:380px;margin:0 auto}
 
-  .services-grid{grid-template-columns:1fr}
-  .proj-grid{grid-template-columns:repeat(2,1fr)}
+  /* Hide static grids on mobile — sliders take over */
+  .services-grid{display:none}
+  .proj-grid{display:none}
+  .process-steps{display:none}
+  .testi-grid{display:none}
+
+  /* Show sliders */
+  .mobile-slider{display:block;overflow:hidden;position:relative}
+
   .skills-wrap{grid-template-columns:1fr}
   .skill-visual{display:none}
-  .skill-cats{grid-template-columns:1fr 1fr}
-  .testi-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:1fr 1fr}
-  .process-steps::before{display:none}
+  .skill-cats{display:none}
+
   .contact-wrap{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   .foot-brand{grid-column:1/-1}
   .form-row{grid-template-columns:1fr}
   .cta-box{padding:2.5rem 1.5rem}
+  .process-steps::before{display:none}
 }
 
 @media(max-width:480px){
-  .proj-grid{grid-template-columns:1fr}
-  .process-steps{grid-template-columns:1fr}
-  .skill-cats{grid-template-columns:1fr}
+  .slider-track > *{flex:0 0 calc(100% - .55rem)}
   .stats-grid{grid-template-columns:1fr 1fr}
   .footer-grid{grid-template-columns:1fr 1fr}
   .hero-title{font-size:clamp(2.8rem,12vw,4.5rem)}
@@ -504,6 +523,17 @@ footer{position:relative;z-index:2;background:#030509;
       <p>Ongoing updates, bug fixes, performance tuning and feature additions. We're here after launch — not just during it.</p>
       <div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Monthly Plans</span><span class="svc-badge"><i class="fas fa-headset"></i> Support</span></div>
     </div>
+  </div>
+
+  <!-- SERVICES MOBILE SLIDER -->
+  <div class="mobile-slider" id="svcSlider">
+    <div class="slider-track" id="svcTrack">
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-laptop-code"></i></div><h3>Static Websites</h3><p>Lightning-fast, pixel-perfect static sites for portfolios, landing pages, and business presences. Fully responsive and SEO-optimized.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Affordable</span><span class="svc-badge"><i class="fas fa-bolt"></i> Fast Delivery</span></div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-layer-group"></i></div><h3>Dynamic Web Apps</h3><p>Full-stack applications with real databases, authentication, dashboards and admin panels. Built with Java Spring Boot, Node.js and React.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Custom Quote</span><span class="svc-badge"><i class="fas fa-database"></i> Full Stack</span></div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-mobile-alt"></i></div><h3>Mobile Apps</h3><p>Cross-platform mobile applications with intuitive UX. From simple utilities to complex e-commerce and booking platforms.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Custom Quote</span><span class="svc-badge"><i class="fas fa-star"></i> Premium</span></div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-paint-brush"></i></div><h3>UI/UX Design</h3><p>Figma-based wireframes, prototypes and design systems that look stunning and feel intuitive. We design before we build.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Affordable</span><span class="svc-badge"><i class="fas fa-pencil-ruler"></i> Figma</span></div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-cloud"></i></div><h3>Deployment &amp; Hosting</h3><p>We handle AWS EC2, Render, GitHub Pages deployments. Your site goes live fast and stays online reliably.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Included</span><span class="svc-badge"><i class="fab fa-aws"></i> AWS</span></div></div>
+      <div class="svc-card"><div class="svc-icon"><i class="fas fa-wrench"></i></div><h3>Maintenance &amp; Support</h3><p>Ongoing updates, bug fixes, performance tuning and feature additions. We're here after launch — not just during it.</p><div><span class="svc-price"><i class="fas fa-indian-rupee-sign"></i> Monthly Plans</span><span class="svc-badge"><i class="fas fa-headset"></i> Support</span></div></div>
   </div>
 </section>
 
@@ -651,6 +681,19 @@ footer{position:relative;z-index:2;background:#030509;
     </div>
 
   </div>
+
+  <!-- PROJECTS MOBILE SLIDER -->
+  <div class="mobile-slider" id="projSlider">
+    <div class="slider-track" id="projTrack">
+      <div class="proj-card" data-cat="web"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=600&q=80" alt="Portfolio"></div><div class="proj-body"><h3>Portfolio Website</h3><p>Minimal interactive portfolio with smooth animations, responsive layout and dark aesthetic.</p><div class="proj-foot"><a href="https://kr-webcrafts.onrender.com" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="web"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80" alt="Rent"></div><div class="proj-body"><h3>Rent — Real Estate Hub</h3><p>Property listing platform with advanced filters, search, and direct contact options for landlords and tenants.</p><div class="proj-foot"><a href="https://kr-realestate.onrender.com/?v=1" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="web"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80" alt="Nursery"></div><div class="proj-body"><h3>Nursery — Plant Store</h3><p>Full-stack nursery app with user registration, login, product dashboard, and WhatsApp-based order placement.</p><div class="badges"><span class="badge">Node.js</span><span class="badge">Register</span><span class="badge">Login</span></div><div class="proj-foot"><a href="https://nursery-fr3v.onrender.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="tool"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80" alt="Rent Receipt"></div><div class="proj-body"><h3>Rent Receipt Generator</h3><p>Auto-calculates rent totals, generates professional PDF receipts and shares them instantly via WhatsApp.</p><div class="badges"><span class="badge">PDF</span><span class="badge">WhatsApp</span></div><div class="proj-foot"><a href="https://karthikj9611.github.io/Rent-Bill-02/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="ecom"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&q=80" alt="Threads"></div><div class="proj-body"><h3>Threads — Clothing Store</h3><p>Fashion e-commerce with product filtering, cart management and direct WhatsApp order checkout.</p><div class="badges"><span class="badge">Filter</span><span class="badge">Cart</span></div><div class="proj-foot"><a href="https://karthikj9611.github.io/Clothe-Store" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="web"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=600&q=80" alt="Salon"></div><div class="proj-body"><h3>Royal Touch Salon</h3><p>Premium salon booking website with service listings for haircuts, facials, and spa with a full backend.</p><div class="badges"><span class="badge">Spring Boot</span><span class="badge">In Dev</span></div><div class="proj-foot"><a href="https://saloon-with-backend.onrender.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="web"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="CleanPro"></div><div class="proj-body"><h3>Clean Pro</h3><p>Professional cleaning service booking website with service categories, pricing and appointment scheduling.</p><div class="badges"><span class="badge">Booking</span><span class="badge">Scheduling</span></div><div class="proj-foot"><a href="https://karthikj9611.github.io/CleanPro" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+      <div class="proj-card" data-cat="tool"><div class="proj-img-wrap"><span class="proj-tag-overlay">Live</span><img class="proj-img" src="https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=600&q=80" alt="OTP"></div><div class="proj-body"><h3>Mail OTP System</h3><p>Enter any email ID and receive a real-time OTP. Includes validation, expiry logic and secure delivery.</p><div class="badges"><span class="badge">Node.js</span><span class="badge">Validation</span></div><div class="proj-foot"><a href="https://mailotp.onrender.com/" target="_blank"><i class="fas fa-external-link-alt"></i> Live Preview</a></div></div></div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -707,6 +750,17 @@ footer{position:relative;z-index:2;background:#030509;
       </div>
     </div>
   </div>
+
+  <!-- SKILLS MOBILE SLIDER -->
+  <div class="mobile-slider" id="skillSlider">
+    <div class="slider-track" id="skillTrack">
+      <div class="skill-cat"><h4><i class="fas fa-code"></i> Frontend</h4><ul><li><i class="fab fa-html5"></i> HTML5</li><li><i class="fab fa-css3-alt"></i> CSS3 / Tailwind</li><li><i class="fab fa-js-square"></i> JavaScript (ES6+)</li><li><i class="fab fa-react"></i> React.js</li></ul></div>
+      <div class="skill-cat"><h4><i class="fas fa-server"></i> Backend</h4><ul><li><i class="fab fa-java"></i> Java</li><li><i class="fas fa-leaf"></i> Spring Boot</li><li><i class="fab fa-node-js"></i> Node.js</li><li><i class="fas fa-database"></i> REST APIs</li></ul></div>
+      <div class="skill-cat"><h4><i class="fas fa-database"></i> Database</h4><ul><li><i class="fas fa-table"></i> MySQL</li><li><i class="fas fa-leaf"></i> MongoDB</li><li><i class="fas fa-fire"></i> Firebase</li></ul></div>
+      <div class="skill-cat"><h4><i class="fas fa-tools"></i> Tools &amp; DevOps</h4><ul><li><i class="fab fa-aws"></i> AWS EC2</li><li><i class="fab fa-github"></i> GitHub CI/CD</li><li><i class="fas fa-vector-square"></i> Figma</li><li><i class="fas fa-cloud-upload-alt"></i> Render / Vercel</li></ul></div>
+    </div>
+    <div class="slider-nav" id="skillNav"></div>
+  </div>
 </section>
 
 <div class="divider"></div>
@@ -737,6 +791,17 @@ footer{position:relative;z-index:2;background:#030509;
       <h4>Launch &amp; Support</h4>
       <p>We deploy to production, run final QA and hand off a live product. Post-launch support ensures everything runs smoothly.</p>
     </div>
+  </div>
+
+  <!-- PROCESS MOBILE SLIDER -->
+  <div class="mobile-slider" id="procSlider">
+    <div class="slider-track" id="procTrack">
+      <div class="step-card"><div class="step-num">01</div><h4>Discovery</h4><p>We start by understanding your goals, target audience, budget and timeline through a quick consultation call.</p></div>
+      <div class="step-card"><div class="step-num">02</div><h4>Design</h4><p>Our team creates Figma wireframes and prototypes so you can see exactly what you're getting before a single line of code is written.</p></div>
+      <div class="step-card"><div class="step-num">03</div><h4>Build</h4><p>We code your product using modern best practices — clean, fast and scalable. Regular updates keep you involved throughout.</p></div>
+      <div class="step-card"><div class="step-num">04</div><h4>Launch &amp; Support</h4><p>We deploy to production, run final QA and hand off a live product. Post-launch support ensures everything runs smoothly.</p></div>
+    </div>
+    <div class="slider-nav" id="procNav"></div>
   </div>
 </section>
 
@@ -905,7 +970,7 @@ footer{position:relative;z-index:2;background:#030509;
 </footer>
 
 <script>
-/* ── THREE.JS BACKGROUND ── */
+/* ── THREE.JS BACKGROUND (ENHANCED) ── */
 (function(){
   const canvas=document.getElementById('bg-canvas');
   const renderer=new THREE.WebGLRenderer({canvas,alpha:true,antialias:true});
@@ -913,49 +978,108 @@ footer{position:relative;z-index:2;background:#030509;
   renderer.setSize(innerWidth,innerHeight);
   const scene=new THREE.Scene();
   const camera=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,0.1,1000);
-  camera.position.z=32;
+  camera.position.z=38;
 
-  /* Particles */
-  const N=1000,pos=new Float32Array(N*3),col=new Float32Array(N*3);
+  /* ── PARTICLES (larger, more) ── */
+  const N=1800,pos=new Float32Array(N*3),col=new Float32Array(N*3),sizes=new Float32Array(N);
   for(let i=0;i<N;i++){
-    pos[i*3]=(Math.random()-.5)*140;
-    pos[i*3+1]=(Math.random()-.5)*90;
-    pos[i*3+2]=(Math.random()-.5)*70;
+    pos[i*3]=(Math.random()-.5)*180;
+    pos[i*3+1]=(Math.random()-.5)*110;
+    pos[i*3+2]=(Math.random()-.5)*80;
     const t=Math.random();
-    if(t<.5){col[i*3]=0;col[i*3+1]=1;col[i*3+2]=.8;}
-    else if(t<.8){col[i*3]=0;col[i*3+1]=.6;col[i*3+2]=1;}
-    else{col[i*3]=1;col[i*3+1]=.7;col[i*3+2]=.28;}
+    if(t<.45){col[i*3]=0;col[i*3+1]=1;col[i*3+2]=.8;}
+    else if(t<.75){col[i*3]=0;col[i*3+1]=.6;col[i*3+2]=1;}
+    else if(t<.9){col[i*3]=1;col[i*3+1]=.7;col[i*3+2]=.28;}
+    else{col[i*3]=.5;col[i*3+1]=0;col[i*3+2]=1;}
+    sizes[i]=Math.random()*.25+.07;
   }
   const pg=new THREE.BufferGeometry();
   pg.setAttribute('position',new THREE.BufferAttribute(pos,3));
   pg.setAttribute('color',new THREE.BufferAttribute(col,3));
-  const pm=new THREE.PointsMaterial({size:.16,vertexColors:true,transparent:true,opacity:.5,sizeAttenuation:true});
+  const pm=new THREE.PointsMaterial({size:.19,vertexColors:true,transparent:true,opacity:.55,sizeAttenuation:true});
   const pts=new THREE.Points(pg,pm);
   scene.add(pts);
 
-  /* Torus knot */
+  /* ── TORUS KNOT (main hero shape) ── */
   const tk=new THREE.Mesh(
-    new THREE.TorusKnotGeometry(7,1.8,130,18),
-    new THREE.MeshBasicMaterial({color:0x00ffcc,wireframe:true,transparent:true,opacity:.045})
+    new THREE.TorusKnotGeometry(8,2,160,22,2,3),
+    new THREE.MeshBasicMaterial({color:0x00ffcc,wireframe:true,transparent:true,opacity:.055})
   );
-  tk.position.set(20,-5,-14);scene.add(tk);
+  tk.position.set(22,-4,-12);scene.add(tk);
 
-  /* Icosahedron */
-  const ico=new THREE.Mesh(
-    new THREE.IcosahedronGeometry(8,1),
-    new THREE.MeshBasicMaterial({color:0x0099ff,wireframe:true,transparent:true,opacity:.04})
-  );
-  ico.position.set(-22,8,-18);scene.add(ico);
-
-  /* Octahedron */
-  const oct=new THREE.Mesh(
-    new THREE.OctahedronGeometry(5,0),
+  /* ── SECOND TORUS KNOT (gold accent) ── */
+  const tk2=new THREE.Mesh(
+    new THREE.TorusKnotGeometry(5,1.2,100,14,3,5),
     new THREE.MeshBasicMaterial({color:0xffb347,wireframe:true,transparent:true,opacity:.04})
   );
-  oct.position.set(5,14,-20);scene.add(oct);
+  tk2.position.set(-24,10,-16);scene.add(tk2);
 
+  /* ── ICOSAHEDRON ── */
+  const ico=new THREE.Mesh(
+    new THREE.IcosahedronGeometry(9,1),
+    new THREE.MeshBasicMaterial({color:0x0099ff,wireframe:true,transparent:true,opacity:.045})
+  );
+  ico.position.set(-24,6,-16);scene.add(ico);
+
+  /* ── OCTAHEDRON ── */
+  const oct=new THREE.Mesh(
+    new THREE.OctahedronGeometry(6,0),
+    new THREE.MeshBasicMaterial({color:0xffb347,wireframe:true,transparent:true,opacity:.045})
+  );
+  oct.position.set(6,16,-22);scene.add(oct);
+
+  /* ── FLOATING WIREFRAME CUBES ── */
+  const cubeGeo=new THREE.BoxGeometry(4,4,4);
+  const cubeMat1=new THREE.MeshBasicMaterial({color:0x00ffcc,wireframe:true,transparent:true,opacity:.04});
+  const cubeMat2=new THREE.MeshBasicMaterial({color:0x0099ff,wireframe:true,transparent:true,opacity:.035});
+  const cubeMat3=new THREE.MeshBasicMaterial({color:0xffb347,wireframe:true,transparent:true,opacity:.04});
+  const cube1=new THREE.Mesh(cubeGeo,cubeMat1); cube1.position.set(-10,-12,-18); scene.add(cube1);
+  const cube2=new THREE.Mesh(new THREE.BoxGeometry(3,3,3),cubeMat2); cube2.position.set(14,12,-20); scene.add(cube2);
+  const cube3=new THREE.Mesh(new THREE.BoxGeometry(5,5,5),cubeMat3); cube3.position.set(-18,-8,-24); scene.add(cube3);
+
+  /* ── TORUS RINGS ── */
+  const ringMat=new THREE.MeshBasicMaterial({color:0x00ffcc,wireframe:true,transparent:true,opacity:.035});
+  const ring1=new THREE.Mesh(new THREE.TorusGeometry(12,0.3,8,60),ringMat);
+  ring1.position.set(0,0,-30); scene.add(ring1);
+  const ring2=new THREE.Mesh(new THREE.TorusGeometry(8,0.25,8,50),
+    new THREE.MeshBasicMaterial({color:0x0099ff,wireframe:true,transparent:true,opacity:.03}));
+  ring2.position.set(15,-10,-28);ring2.rotation.x=Math.PI/3; scene.add(ring2);
+  const ring3=new THREE.Mesh(new THREE.TorusGeometry(6,0.2,6,40),
+    new THREE.MeshBasicMaterial({color:0xffb347,wireframe:true,transparent:true,opacity:.03}));
+  ring3.position.set(-16,12,-26);ring3.rotation.y=Math.PI/4; scene.add(ring3);
+
+  /* ── DNA HELIX ── */
+  const helixGroup=new THREE.Group();
+  const helixMat=new THREE.MeshBasicMaterial({color:0x00ffcc,transparent:true,opacity:.07});
+  const helixMat2=new THREE.MeshBasicMaterial({color:0x0099ff,transparent:true,opacity:.07});
+  for(let i=0;i<30;i++){
+    const ang=i*(Math.PI*2/8);
+    const y=(i/30)*28-14;
+    const s1=new THREE.Mesh(new THREE.SphereGeometry(.28,6,6),helixMat);
+    s1.position.set(Math.cos(ang)*3,y,Math.sin(ang)*3); helixGroup.add(s1);
+    const s2=new THREE.Mesh(new THREE.SphereGeometry(.22,6,6),helixMat2);
+    s2.position.set(Math.cos(ang+Math.PI)*3,y,Math.sin(ang+Math.PI)*3); helixGroup.add(s2);
+    if(i%4===0){
+      const crossGeo=new THREE.CylinderGeometry(.06,.06,6,4);
+      const cross=new THREE.Mesh(crossGeo,new THREE.MeshBasicMaterial({color:0x00ffcc,transparent:true,opacity:.05}));
+      cross.position.set(0,y,0);
+      cross.rotation.z=ang+Math.PI/2;
+      helixGroup.add(cross);
+    }
+  }
+  helixGroup.position.set(-8,0,-10);
+  scene.add(helixGroup);
+
+  /* ── DODECAHEDRON ── */
+  const dod=new THREE.Mesh(
+    new THREE.DodecahedronGeometry(5.5,0),
+    new THREE.MeshBasicMaterial({color:0x7700ff,wireframe:true,transparent:true,opacity:.038})
+  );
+  dod.position.set(28,8,-20);scene.add(dod);
+
+  /* ── MOUSE PARALLAX ── */
   let mx=0,my=0;
-  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.5;my=(e.clientY/innerHeight-.5)*.5});
+  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*.6;my=(e.clientY/innerHeight-.5)*.6});
 
   addEventListener('resize',()=>{
     camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
@@ -966,12 +1090,38 @@ footer{position:relative;z-index:2;background:#030509;
   (function loop(){
     requestAnimationFrame(loop);
     const t=clk.getElapsedTime();
-    pts.rotation.y=t*.015;pts.rotation.x=t*.007;
-    tk.rotation.x=t*.2;tk.rotation.y=t*.12;
-    ico.rotation.x=t*.1;ico.rotation.z=t*.08;
-    oct.rotation.y=t*.15;oct.rotation.x=t*.09;
-    camera.position.x+=(mx*6-camera.position.x)*.03;
-    camera.position.y+=(-my*4-camera.position.y)*.03;
+
+    /* Particles slow drift */
+    pts.rotation.y=t*.012;pts.rotation.x=t*.006;
+
+    /* Torus knots */
+    tk.rotation.x=t*.18;tk.rotation.y=t*.11;
+    tk2.rotation.x=-t*.14;tk2.rotation.z=t*.09;
+
+    /* Icosahedron / octahedron */
+    ico.rotation.x=t*.09;ico.rotation.z=t*.07;
+    oct.rotation.y=t*.13;oct.rotation.x=t*.08;
+
+    /* Cubes tumble */
+    cube1.rotation.x=t*.22;cube1.rotation.y=t*.17;
+    cube2.rotation.y=t*.19;cube2.rotation.z=t*.13;
+    cube3.rotation.x=t*.1;cube3.rotation.z=t*.16;
+
+    /* Rings spin */
+    ring1.rotation.z=t*.07;ring1.rotation.x=t*.04;
+    ring2.rotation.y=t*.09;ring2.rotation.z=t*.06;
+    ring3.rotation.x=t*.08;ring3.rotation.y=t*.11;
+
+    /* DNA helix rotate */
+    helixGroup.rotation.y=t*.2;
+    helixGroup.position.y=Math.sin(t*.3)*1.5;
+
+    /* Dodecahedron */
+    dod.rotation.x=t*.07;dod.rotation.y=t*.05;
+
+    /* Camera parallax */
+    camera.position.x+=(mx*7-camera.position.x)*.03;
+    camera.position.y+=(-my*5-camera.position.y)*.03;
     renderer.render(scene,camera);
   })();
 })();
@@ -1025,6 +1175,79 @@ function sendMsg(){
   const wa=`https://wa.me/919611459960?text=${encodeURIComponent(`Hi KR Webcrafts!\n\nName: ${n}\nEmail: ${e}\nService: ${s}\nMessage: ${m}`)}`;
   window.open(wa,'_blank');
 }
+
+/* ── MOBILE SLIDERS ── */
+(function(){
+  function initSlider(trackId, navId, itemsPerView){
+    const track=document.getElementById(trackId);
+    const nav=document.getElementById(navId);
+    if(!track||!nav) return;
+    const items=track.children;
+    const total=items.length;
+    const pages=Math.ceil(total/itemsPerView);
+    let cur=0;
+
+    // Build dots
+    nav.innerHTML='';
+    const prevBtn=document.createElement('button');
+    prevBtn.className='slider-arrow';prevBtn.innerHTML='&#8249;';
+    nav.appendChild(prevBtn);
+    const dotsWrap=document.createElement('div');
+    dotsWrap.style.cssText='display:flex;gap:.5rem;align-items:center';
+    for(let i=0;i<pages;i++){
+      const d=document.createElement('div');
+      d.className='slider-dot'+(i===0?' active':'');
+      d.onclick=()=>goTo(i);
+      dotsWrap.appendChild(d);
+    }
+    nav.appendChild(dotsWrap);
+    const nextBtn=document.createElement('button');
+    nextBtn.className='slider-arrow';nextBtn.innerHTML='&#8250;';
+    nav.appendChild(nextBtn);
+
+    function goTo(p){
+      cur=Math.max(0,Math.min(p,pages-1));
+      const sliderWidth=track.parentElement.offsetWidth;
+      const itemW=sliderWidth/itemsPerView;
+      const gap=17.6; // 1.1rem gap approx
+      track.style.transform=`translateX(-${cur*(itemW+gap)*itemsPerView}px)`;
+      dotsWrap.querySelectorAll('.slider-dot').forEach((d,i)=>d.classList.toggle('active',i===cur));
+    }
+
+    prevBtn.onclick=()=>goTo(cur-1);
+    nextBtn.onclick=()=>goTo(cur+1);
+
+    // Touch swipe
+    let startX=0;
+    track.addEventListener('touchstart',e=>{startX=e.touches[0].clientX},{passive:true});
+    track.addEventListener('touchend',e=>{
+      const dx=startX-e.changedTouches[0].clientX;
+      if(Math.abs(dx)>40) goTo(cur+(dx>0?1:-1));
+    },{passive:true});
+
+    // Responsive: recalc on resize
+    window.addEventListener('resize',()=>goTo(cur));
+  }
+
+  function getItemsPerView(){
+    return window.innerWidth<=480?1:2;
+  }
+
+  function setupAll(){
+    const ipv=getItemsPerView();
+    initSlider('svcTrack','svcNav',ipv);
+    initSlider('projTrack','projNav',ipv);
+    initSlider('skillTrack','skillNav',ipv);
+    initSlider('procTrack','procNav',ipv);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',setupAll);
+  } else {
+    setupAll();
+  }
+  window.addEventListener('resize',setupAll);
+})();
 
 /* ── DISABLE RIGHT CLICK ── */
 document.addEventListener('contextmenu',e=>e.preventDefault());
